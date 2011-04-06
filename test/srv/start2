@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ $1 ]
+then
+    port=$1
+else
+    port=12345
+fi
+s=1000
+e=100
+for (( i=$s ; $i < $s+$e ;i=$i+1))
+do
+    echo $i `date`
+    ./pers-client $port $i 5 >log/$i.$port.log 2>/dev/null &
+    usleep 100000
+done

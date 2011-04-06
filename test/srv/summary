@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $1 ]
+then
+    tm=$1
+else
+    echo need hh:mm
+    exit
+fi
+for((i=20;$i<40;i=$i+1))
+do
+    echo $tm:$i `grep accept\ $tm:$i log/*.12345.log 2>/dev/null|wc -l` `grep request\ $tm:$i log/*.12345.log 2>/dev/null|perl -nae 'END{print "$n $c\n"}$n++;$c+=$F[3]'`
+done
